@@ -19,17 +19,10 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Ensure Stable CocoaPods Environment
-        run: |
-          sudo gem install cocoapods --no-document
-          pod --version
-
       - name: Install Dependencies
-        working-directory: mobile
         run: flutter pub get
 
       - name: Create fallback .env file for asset bundling
-        working-directory: mobile
         run: |
           if [ -n "${{ secrets.ENV_FILE }}" ]; then
             echo "${{ secrets.ENV_FILE }}" > .env
@@ -38,7 +31,6 @@ jobs:
           fi
 
       - name: Build iOS App with Unsigned Signing Allowed
-        working-directory: mobile
         run: |
           flutter build ios --release --no-codesign --config-only
           cd ios
@@ -53,7 +45,6 @@ jobs:
             build
 
       - name: Bundle Payload into Unsigned IPA
-        working-directory: mobile
         run: |
           mkdir -p build/Payload
           cp -r build/ios_derived/Build/Products/Release-iphoneos/Runner.app build/Payload/
@@ -65,6 +56,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: flutter-ios-ipa
-          path: mobile/build/app-release-unsigned.ipa
+          path: build/app-release-unsigned.ipa
           retention-days: 7
-
