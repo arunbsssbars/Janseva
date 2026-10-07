@@ -1,58 +1,46 @@
-# ==============================================================================
-# JanSeva Root .gitignore (Flutter Mobile + Next.js Web Monorepo)
-# ==============================================================================
+# Standard Flutter & Dart .gitignore
 
-# OS & Editor generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-Desktop.ini
+# Miscellaneous
+*.class
+*.log
+*.pyc
 *.swp
-*.swo
-*~
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
 .idea/
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.sublime-workspace
-*.sublime-project
 
-# Environment & Secret files
-.env
-.env*.local
-*.pem
-*.key
-*.jks
-*.keystore
+# Visual Studio Code related
+.vscode/
 
-# Node / Next.js Web Build & Cache
-node_modules/
-.next/
-out/
-build/
-dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-.pnpm-debug.log*
-*.tsbuildinfo
-.turbo/
-
-# Flutter / Dart Build & Cache
+# Flutter/Dart/Pub related
+**/doc/api/
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
 .pub-cache/
 .pub/
-/mobile/build/
-/mobile/.dart_tool/
-*.lock.bak
+/build/
+
+# Symbol processing
+app.*.symbols
+
+# Obfuscation
+app.*.map.json
+
+# Android Studio will create this file on each build
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+
+build/ios_derived
+
