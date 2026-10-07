@@ -36,6 +36,7 @@ import 'features/parking/screens/smart_parking_screen.dart';
 import 'features/water_quality/screens/water_quality_screen.dart';
 import 'features/reporting/screens/quick_grievance_screen.dart';
 import 'features/reporting/screens/silent_issue_audit_screen.dart';
+import 'features/statutory/screens/govt_machinery_hub_screen.dart';
 import 'core/services/karma_calculator.dart';
 
 void main() {
@@ -304,6 +305,77 @@ class _JanSevaHomeScreenState extends State<JanSevaHomeScreen> {
                 ],
               ),
             ),
+
+          // 20 Real-World Civic Machinery Cases Hub Banner
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => GovtMachineryHubScreen(isHindi: isHindi),
+                ),
+              );
+            },
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF1E3A8A), Color(0xFF2563EB)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withValues(alpha: 0.2),
+                    blurRadius: 6,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Icon(Icons.gavel_rounded, color: Colors.white, size: 24),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isHindi ? '20 वास्तविक सरकारी कानूनी मामले' : '20 Real-World Civic Cases',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          isHindi
+                              ? 'सड़क गारंटी, पेयजल, बिजली, एनजीटी व धारा 133'
+                              : 'PWD DLP, BIS Water, CrPC 133, NGT, RTI',
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white, size: 14),
+                ],
+              ),
+            ),
+          ),
 
           // Search Field
           TextField(
@@ -657,6 +729,20 @@ class _JanSevaHomeScreenState extends State<JanSevaHomeScreen> {
             },
           ),
           const Divider(),
+          ListTile(
+            leading: const Icon(Icons.gavel_rounded, color: Color(0xFF1D4ED8)),
+            title: Text(isHindi ? 'सरकारी मशीनरी निवारण (20 मामले)' : 'Govt Machinery Hub (20 Cases)'),
+            subtitle: const Text('PWD DLP, CrPC 133, NGT, RTPS & RTI Petitions'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => GovtMachineryHubScreen(isHindi: isHindi),
+                ),
+              );
+            },
+          ),
           ListTile(
             leading: const Icon(Icons.description_outlined, color: Color(0xFF2563EB)),
             title: Text(isHindi ? 'सूचना का अधिकार (RTI)' : 'RTI Statutory Portal'),
